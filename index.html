@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="css/all.min.css" /> -->
+    <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,11 +13,11 @@
       href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
-
+    <!-- 
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;0,800;1,400&display=swap"
       rel="stylesheet"
-    />
+    /> -->
 
     <title>Document</title>
   </head>
@@ -26,14 +26,23 @@
       <div class="spin">
         <i class="fa fa-gear"></i>
       </div>
-      <p>Colors</p>
-      <ul>
-        <li class="active" data-color="#2814dc"></li>
-        <li data-color="#dc1037"></li>
-        <li data-color="#03a9f4"></li>
-        <li data-color="#17dc10"></li>
-        <li data-color="#edf105"></li>
-      </ul>
+      <div class="chooseoption">
+        <p>Colors</p>
+        <ul>
+          <li class="active" data-color="#2814dc"></li>
+          <li data-color="#dc1037"></li>
+          <li data-color="#03a9f4"></li>
+          <li data-color="#17dc10"></li>
+          <li data-color="#edf105"></li>
+        </ul>
+      </div>
+      <div class="chooseoption">
+        <p>Random Background</p>
+        <div class="backchoose">
+          <span class="active">Yes</span>
+          <span>No</span>
+        </div>
+      </div>
     </div>
     <div class="landing-page">
       <div class="overlay"></div>
@@ -75,7 +84,11 @@
         </div>
       </div>
       <div class="introduction-text">
-        <h1>We Are <span>Creative</span> Agency</h1>
+        <h1>
+          We Are
+          <span>Creative</span>
+          Agency
+        </h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
           odit nihil ullam nesciunt quidem iste

@@ -1,12 +1,16 @@
 :root {
   --main-color: #2814dc;
 }
+* {
+  box-sizing: border-box;
+}
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 .parameter {
   width: 250px;
   height: 100vh;
+  padding: 10px;
   position: fixed;
   top: 0;
   left: 0;
@@ -27,7 +31,7 @@ body {
   position: absolute;
   padding: 10px 10px 10px 8px;
   right: -35px;
-  top: 115px;
+  top: 164px;
   z-index: 1000;
   background-color: white;
   cursor: pointer;
@@ -43,9 +47,15 @@ body {
   -ms-transform: translateX(0px);
   -o-transform: translateX(0px);
 }
+.parameter .chooseoption {
+  background-color: #eee;
+  padding: 10px;
+  margin-top: 10px;
+}
 .parameter p {
   font-weight: bold;
   font-size: 20px;
+  text-align: center;
 }
 .parameter ul {
   display: flex;
@@ -65,10 +75,12 @@ body {
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   margin-left: 10px;
-  opacity: 0.5;
+  opacity: 0.2;
+  border: 3px solid white;
 }
 .parameter ul li.active {
   opacity: 1;
+  border: 1px solid rgba(0, 0, 0, 0.685);
 }
 .parameter ul li:nth-child(1) {
   background-color: #2814dc;
@@ -85,6 +97,22 @@ body {
 }
 .parameter ul li:nth-child(5) {
   background-color: #edf105;
+}
+.chooseoption .backchoose {
+  width: fit-content;
+  margin: 10px auto;
+}
+.chooseoption .backchoose span {
+  padding: 5px 20px;
+  background-color: #03a9f4;
+  color: white;
+  font-size: bold;
+  border-radius: 5px;
+  opacity: 0.2;
+  cursor: pointer;
+}
+.chooseoption .backchoose span.active {
+  opacity: 1;
 }
 /* Start Landing Page  */
 .container {
@@ -158,6 +186,7 @@ body {
   -o-transition: 0.3s;
 }
 .introduction-text {
+  width: 80%;
   position: absolute;
   left: 50%;
   top: 50%;
