@@ -1,0 +1,210 @@
+:root {
+  --main-color: #2814dc;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+}
+.parameter {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  z-index: 4;
+  transform: translateX(-250px);
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  -webkit-transform: translateX(-250px);
+  -moz-transform: translateX(-250px);
+  -ms-transform: translateX(-250px);
+  -o-transform: translateX(-250px);
+}
+.parameter .spin {
+  position: absolute;
+  padding: 10px 10px 10px 8px;
+  right: -35px;
+  top: 115px;
+  z-index: 1000;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  border-radius: 0% 50% 50% 0%;
+  justify-content: center;
+  align-items: center;
+}
+.parameter.opened {
+  transform: translateX(0px);
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  -o-transform: translateX(0px);
+}
+.parameter p {
+  font-weight: bold;
+  font-size: 20px;
+}
+.parameter ul {
+  display: flex;
+  list-style: none;
+  width: fit-content;
+  margin: 30px auto;
+  padding: 0px;
+}
+
+.parameter ul li {
+  width: 30px;
+  height: 30px;
+  background-color: antiquewhite;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  margin-left: 10px;
+  opacity: 0.5;
+}
+.parameter ul li.active {
+  opacity: 1;
+}
+.parameter ul li:nth-child(1) {
+  background-color: #2814dc;
+}
+
+.parameter ul li:nth-child(2) {
+  background-color: #dc1037;
+}
+.parameter ul li:nth-child(3) {
+  background-color: #03a9f4;
+}
+.parameter ul li:nth-child(4) {
+  background-color: #17dc10;
+}
+.parameter ul li:nth-child(5) {
+  background-color: #edf105;
+}
+/* Start Landing Page  */
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.landing-page {
+  height: 100vh;
+  position: relative;
+  color: white;
+}
+.landing-page .overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #000000a8;
+  z-index: 1;
+}
+.imgs {
+  background-color: #0000006e;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+}
+.imgs img {
+  width: 100vw;
+  height: 100%;
+  transition: 1s;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+}
+.header-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  width: 95%;
+}
+.header-area .logo {
+  font-size: 20px;
+}
+.header-area .links-container {
+}
+
+.header-area .links-container .links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.header-area .links-container .links li {
+  display: inline-block;
+  margin-left: 10px;
+}
+.header-area .links-container .links li a {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+.introduction-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+}
+.introduction-text h1 {
+  line-height: 1.8;
+}
+.introduction-text h1 span {
+  color: var(--main-color);
+}
+.introduction-text p {
+  line-height: 1.8;
+}
+.header-area .links-container .links li a:hover,
+.header-area .links-container .links li a.active {
+  color: var(--main-color);
+}
+.pagenumber {
+  position: absolute;
+  width: fit-content;
+  height: 50px;
+  z-index: 2;
+  left: 50%;
+  top: 82%;
+  transform: translateX(-50%);
+}
+.pagenumber span {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin-left: 10px;
+  background-color: antiquewhite;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  transition: 1s;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+}
+.pagenumber span.activepage {
+  background-color: var(--main-color);
+}
+/* End Landing Page */
