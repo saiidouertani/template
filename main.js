@@ -1,60 +1,64 @@
 // background
-let bakground = document.querySelectorAll('.imgs div img')
-let activepage = document.querySelectorAll('.pagenumber span')
-let imgscroll
-let imgscrollleft
-let scrollpagenum
-let scrollbackpagenum
-function scrolltoright() {
-  let i = 1
-  let j = 100
+let transition = 2000;
+let bakground = document.querySelectorAll(".imgs div img");
+let activepage = document.querySelectorAll(".pagenumber span");
+let imgscroll;
+let imgscrollleft;
+let scrollpagenum;
+let scrollbackpagenum;
+function scrolltoright(i, j) {
   imgscroll = window.setInterval(function () {
-    bakground[i].style = `transform:translateX(-${j}%)`
-    j = j + 100
-    i++
+    bakground[i].style = `transform:translateX(-${j}%)`;
+    bakground.forEach((el) => (el.classList = ""));
+    bakground[i].classList.add("activeimage");
+    bakground[i].setAttribute("data-tranlate", j);
+    j = j + 100;
+    i++;
     if (i == bakground.length) {
-      window.clearInterval(imgscroll)
-      scrolltoleft()
+      window.clearInterval(imgscroll);
+      scrolltoleft(bakground.length - 1, -(bakground.length - 2) * 100);
     }
-  }, 1000)
+    // console.log(i);
+    return i;
+  }, transition);
 }
-function scrolltoleft() {
-  let i = bakground.length - 1
-  let j = -(bakground.length - 2) * 100
+function scrolltoleft(i, j) {
   imgscrollleft = window.setInterval(function () {
-    bakground[i].style = `transform:translateX(${j}%)`
-    j = j + 100
-    i--
+    bakground[i].style = `transform:translateX(${j}%)`;
+    bakground.forEach((el) => (el.classList = ""));
+    bakground[i].classList.add("activebackimage");
+    bakground[i].setAttribute("data-tranlate", j);
+
+    j = j + 100;
+    i--;
     if (i == 0) {
-      window.clearInterval(imgscrollleft)
-      scrolltoright()
+      window.clearInterval(imgscrollleft);
+      scrolltoright(1, 100);
     }
-  }, 1000)
+  }, transition);
 }
 
-function scrollpage() {
-  let i = 1
+function scrollpage(i) {
   scrollpagenum = setInterval(function () {
-    activepage.forEach((el) => (el.classList = ''))
-    activepage[i].classList.add('activepage')
-    i++
+    activepage.forEach((el) => (el.classList = ""));
+    activepage[i].classList.add("activepage");
+    i++;
     if (i == 6) {
-      window.clearInterval(scrollpagenum)
-      scrollbackpage()
+      window.clearInterval(scrollpagenum);
+      scrollbackpage(activepage.length - 2);
     }
-  }, 1000)
+  }, transition);
 }
-function scrollbackpage() {
-  let i = activepage.length - 2
+function scrollbackpage(i) {
   scrollbackpagenum = setInterval(function () {
-    activepage.forEach((el) => (el.classList = ''))
-    activepage[i].classList.add('activepage')
-    i--
+    activepage.forEach((el) => (el.classList = ""));
+    activepage[i].classList.add("activebackpage");
+    i--;
     if (i == -1) {
-      window.clearInterval(scrollbackpagenum)
-      scrollpage()
+      window.clearInterval(scrollbackpagenum);
+      scrollpage(1);
     }
-  }, 1000)
+  }, transition);
 }
 
 // end bakground landing
@@ -62,66 +66,82 @@ function scrollbackpage() {
 // Start parameter code
 
 // color parametre
-let parameter = document.querySelector('.parameter')
-let icon = parameter.querySelector('.spin')
-let icongear = icon.querySelector('i')
+let parameter = document.querySelector(".parameter");
+let icon = parameter.querySelector(".spin");
+let icongear = icon.querySelector("i");
 
 icon.onclick = function () {
-  parameter.classList.toggle('opened')
-  icongear.classList.toggle('fa-spin')
-}
-let colors = parameter.querySelectorAll('ul li')
+  parameter.classList.toggle("opened");
+  icongear.classList.toggle("fa-spin");
+};
+let colors = parameter.querySelectorAll("ul li");
 
 colors.forEach(function (el) {
   el.onclick = function () {
-    colors.forEach((el) => el.classList.remove('active'))
-    el.classList.add('active')
+    colors.forEach((el) => el.classList.remove("active"));
+    el.classList.add("active");
     document.documentElement.style.setProperty(
-      '--main-color',
-      `${el.dataset.color}`,
-    )
-    window.localStorage.setItem('color', el.dataset.color)
-  }
-})
+      "--main-color",
+      `${el.dataset.color}`
+    );
+    window.localStorage.setItem("color", el.dataset.color);
+  };
+});
 window.onload = function () {
-  if (localStorage.getItem('color') != null) {
+  if (localStorage.getItem("color") != null) {
     document.documentElement.style.setProperty(
-      '--main-color',
-      `${window.localStorage.getItem('color')}`,
-    )
+      "--main-color",
+      `${window.localStorage.getItem("color")}`
+    );
   }
-}
+};
 // end color parametre
 
 // start background parameter
-parameter.querySelector('.backchoose').addEventListener(
-  'click',
+parameter.querySelector(".backchoose").addEventListener(
+  "click",
   function (e) {
     parameter
-      .querySelectorAll('.backchoose span')
-      .forEach((e) => e.classList.remove('active'))
-    e.target.classList.add('active')
+      .querySelectorAll(".backchoose span")
+      .forEach((e) => e.classList.remove("active"));
+    e.target.classList.add("active");
   },
-  this,
-)
+  this
+);
 
 // end background parametre
 
 // end parameter code
 
-scrolltoright()
-scrollpage()
+scrolltoright(1, 100);
+scrollpage(1);
 
-parameter.querySelectorAll('.backchoose span')[1].onclick = function () {
-  console.log('ok')
-  window.clearInterval(imgscroll)
+parameter.querySelectorAll(".backchoose span")[1].onclick = function () {
+  console.log("ok");
+  window.clearInterval(imgscroll);
+  window.clearInterval(imgscrollleft);
+  window.clearInterval(scrollpagenum);
+  window.clearInterval(scrollbackpagenum);
+};
 
-  window.clearInterval(imgscrollleft)
-  window.clearInterval(scrollpagenum)
-  window.clearInterval(scrollbackpagenum)
-}
-
-parameter.querySelectorAll('.backchoose span')[0].onclick = function () {
-  scrolltoright()
-  scrollpage()
-}
+parameter.querySelectorAll(".backchoose span")[0].onclick = function () {
+  //scrolltoright();
+  for (i = 0; i < activepage.length; i++) {
+    if (
+      activepage[i].classList.contains("activepage") &&
+      bakground[i].classList.contains("activeimage")
+    ) {
+      scrolltoright(
+        i + 1,
+        parseInt(bakground[i].getAttribute("data-translate")) + 100
+      );
+      scrollpage(i + 1);
+    } else if (
+      activepage[i].classList.contains("activebackpage") &&
+      bakground[i].classList.contains("activebackimage")
+    ) {
+      // scrolltoleft(i, -bakground[i].getAttribute("data-translate"));
+      scrollbackpage(i);
+    }
+  }
+};
