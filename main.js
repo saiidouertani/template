@@ -43,6 +43,7 @@ function scrollpage() {
       scrollbackpage()
     }
   }, 1000)
+  return i
 }
 function scrollbackpage() {
   let i = activepage.length - 2
