@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .parameter {
   width: 250px;
@@ -233,7 +233,8 @@ body {
   -ms-transition: 1s;
   -o-transition: 1s;
 }
-.pagenumber span.activepage {
+.pagenumber span.activepage,
+.pagenumber span.activebackpage {
   background-color: var(--main-color);
 }
 /* End Landing Page */

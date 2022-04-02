@@ -1,61 +1,65 @@
 // background
+let transition = 2000
 let bakground = document.querySelectorAll('.imgs div img')
 let activepage = document.querySelectorAll('.pagenumber span')
 let imgscroll
 let imgscrollleft
 let scrollpagenum
 let scrollbackpagenum
-function scrolltoright() {
-  let i = 1
-  let j = 100
+function scrolltoright(i, j) {
   imgscroll = window.setInterval(function () {
     bakground[i].style = `transform:translateX(-${j}%)`
+    bakground.forEach((el) => (el.classList = ''))
+    bakground[i].classList.add('activeimage')
+    bakground[i].setAttribute('data-tranlate', j)
     j = j + 100
     i++
     if (i == bakground.length) {
       window.clearInterval(imgscroll)
-      scrolltoleft()
+      scrolltoleft(bakground.length - 1, -(bakg
+        round.length - 2) * 100)
     }
-  }, 1000)
+    // console.log(i);
+    return i
+  }, transition)
 }
-function scrolltoleft() {
-  let i = bakground.length - 1
-  let j = -(bakground.length - 2) * 100
+function scrolltoleft(i, j) {
   imgscrollleft = window.setInterval(function () {
     bakground[i].style = `transform:translateX(${j}%)`
+    bakground.forEach((el) => (el.classList = ''))
+    bakground[i].classList.add('activebackimage')
+    bakground[i].setAttribute('data-tranlate', j)
+
     j = j + 100
     i--
     if (i == 0) {
       window.clearInterval(imgscrollleft)
-      scrolltoright()
+      scrolltoright(1, 100)
     }
-  }, 1000)
+  }, transition)
 }
 
-function scrollpage() {
-  let i = 1
+function scrollpage(i) {
   scrollpagenum = setInterval(function () {
     activepage.forEach((el) => (el.classList = ''))
     activepage[i].classList.add('activepage')
     i++
     if (i == 6) {
       window.clearInterval(scrollpagenum)
-      scrollbackpage()
+      scrollbackpage(activepage.length - 2)
     }
-  }, 1000)
-  return i
+  }, transition)
 }
-function scrollbackpage() {
-  let i = activepage.length - 2
+function scrollbackpage(i) {
   scrollbackpagenum = setInterval(function () {
     activepage.forEach((el) => (el.classList = ''))
-    activepage[i].classList.add('activepage')
+    activepage[i].classList.add('activebackpage')
     i--
     if (i == -1) {
       window.clearInterval(scrollbackpagenum)
-      scrollpage()
+      scrollpage(1)
     }
-  }, 1000)
+  }, transition)
 }
 
 // end bakground landing
@@ -110,19 +114,35 @@ parameter.querySelector('.backchoose').addEventListener(
 
 // end parameter code
 
-scrolltoright()
-scrollpage()
+scrolltoright(1, 100)
+scrollpage(1)
 
 parameter.querySelectorAll('.backchoose span')[1].onclick = function () {
   console.log('ok')
   window.clearInterval(imgscroll)
-
   window.clearInterval(imgscrollleft)
   window.clearInterval(scrollpagenum)
   window.clearInterval(scrollbackpagenum)
 }
 
 parameter.querySelectorAll('.backchoose span')[0].onclick = function () {
-  scrolltoright()
-  scrollpage()
+  //scrolltoright();
+  for (i = 0; i < activepage.length; i++) {
+    if (
+      activepage[i].classList.contains('activepage') &&
+      bakground[i].classList.contains('activeimage')
+    ) {
+      scrolltoright(
+        i + 1,
+        parseInt(bakground[i].getAttribute('data-translate')) + 100,
+      )
+      scrollpage(i + 1)
+    } else if (
+      activepage[i].classList.contains('activebackpage') &&
+      bakground[i].classList.contains('activebackimage')
+    ) {
+      // scrolltoleft(i, -bakground[i].getAttribute("data-translate"));
+      scrollbackpage(i)
+    }
+  }
 }
