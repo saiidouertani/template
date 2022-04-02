@@ -1,68 +1,35 @@
 // background
-let transition = 2000;
+let transition = 1000;
 let bakground = document.querySelectorAll(".imgs div img");
 let activepage = document.querySelectorAll(".pagenumber span");
 let imgscroll;
 let imgscrollleft;
 let scrollpagenum;
 let scrollbackpagenum;
-function scrolltoright(i, j) {
-  imgscroll = window.setInterval(function () {
-    bakground[i].style = `transform:translateX(-${j}%)`;
-    bakground.forEach((el) => (el.classList = ""));
-    bakground[i].classList.add("activeimage");
-    bakground[i].setAttribute("data-tranlate", j);
-    j = j + 100;
-    i++;
-    if (i == bakground.length) {
-      window.clearInterval(imgscroll);
-      scrolltoleft(bakground.length - 1, -(bakground.length - 2) * 100);
-    }
-    // console.log(i);
-    return i;
-  }, transition);
-}
-function scrolltoleft(i, j) {
-  imgscrollleft = window.setInterval(function () {
-    bakground[i].style = `transform:translateX(${j}%)`;
-    bakground.forEach((el) => (el.classList = ""));
-    bakground[i].classList.add("activebackimage");
-    bakground[i].setAttribute("data-tranlate", j);
-
-    j = j + 100;
-    i--;
-    if (i == 0) {
-      window.clearInterval(imgscrollleft);
-      scrolltoright(1, 100);
-    }
-  }, transition);
-}
-
-function scrollpage(i) {
-  scrollpagenum = setInterval(function () {
-    activepage.forEach((el) => (el.classList = ""));
-    activepage[i].classList.add("activepage");
-    i++;
-    if (i == 6) {
-      window.clearInterval(scrollpagenum);
-      scrollbackpage(activepage.length - 2);
-    }
-  }, transition);
-}
-function scrollbackpage(i) {
-  scrollbackpagenum = setInterval(function () {
-    activepage.forEach((el) => (el.classList = ""));
-    activepage[i].classList.add("activebackpage");
-    i--;
-    if (i == -1) {
-      window.clearInterval(scrollbackpagenum);
-      scrollpage(1);
-    }
-  }, transition);
-}
 
 // end bakground landing
-
+function imgscrollone(i) {
+  imgscroll = setInterval(function () {
+    bakground.forEach((e) => e.classList.remove("activeimage"));
+    bakground[i].classList.add("activeimage");
+    bakground[i].style = `transform:translateX(${-i * 100}%)`;
+    i++;
+    j += 100;
+    if (i == bakground.length) {
+      window.clearInterval(imgscroll);
+    }
+  }, transition);
+}
+function pagecrollone(i) {
+  scrollpagenum = setInterval(function () {
+    activepage.forEach((e) => e.classList.remove("activepage"));
+    activepage[i].classList.add("activepage");
+    i++;
+    if (i == activepage.length) {
+      window.clearInterval(scrollpagenum);
+    }
+  }, transition);
+}
 // Start parameter code
 
 // color parametre
@@ -112,12 +79,10 @@ parameter.querySelector(".backchoose").addEventListener(
 // end background parametre
 
 // end parameter code
-
-scrolltoright(1, 100);
-scrollpage(1);
+imgscrollone(1);
+pagecrollone(1);
 
 parameter.querySelectorAll(".backchoose span")[1].onclick = function () {
-  console.log("ok");
   window.clearInterval(imgscroll);
   window.clearInterval(imgscrollleft);
   window.clearInterval(scrollpagenum);
@@ -125,23 +90,13 @@ parameter.querySelectorAll(".backchoose span")[1].onclick = function () {
 };
 
 parameter.querySelectorAll(".backchoose span")[0].onclick = function () {
-  //scrolltoright();
-  for (i = 0; i < activepage.length; i++) {
+  for (i = 0; i < bakground.length; i++) {
     if (
-      activepage[i].classList.contains("activepage") &&
-      bakground[i].classList.contains("activeimage")
+      bakground[i].classList.contains("activeimage") &&
+      activepage[i].classList.contains("activepage")
     ) {
-      scrolltoright(
-        i + 1,
-        parseInt(bakground[i].getAttribute("data-translate")) + 100
-      );
-      scrollpage(i + 1);
-    } else if (
-      activepage[i].classList.contains("activebackpage") &&
-      bakground[i].classList.contains("activebackimage")
-    ) {
-      // scrolltoleft(i, -bakground[i].getAttribute("data-translate"));
-      scrollbackpage(i);
+      imgscrollone(i);
+      pagecrollone(i);
     }
   }
 };

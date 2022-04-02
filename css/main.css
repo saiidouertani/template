@@ -113,6 +113,7 @@ body {
 }
 .chooseoption .backchoose span.active {
   opacity: 1;
+  cursor: none;
 }
 /* Start Landing Page  */
 .container {
@@ -142,11 +143,6 @@ body {
 .imgs img {
   width: 100vw;
   height: 100%;
-  transition: 1s;
-  -webkit-transition: 1s;
-  -moz-transition: 1s;
-  -ms-transition: 1s;
-  -o-transition: 1s;
 }
 .header-area {
   display: flex;
@@ -236,5 +232,12 @@ body {
 .pagenumber span.activepage,
 .pagenumber span.activebackpage {
   background-color: var(--main-color);
+}
+.imgs img.activebackimage {
+  transform: translateX(0%) !important;
+  -webkit-transform: translateX(0%) !important;
+  -moz-transform: translateX(0%) !important;
+  -ms-transform: translateX(0%) !important;
+  -o-transform: translateX(0%) !important;
 }
 /* End Landing Page */
