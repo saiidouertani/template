@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 .parameter {
   width: 250px;
@@ -113,11 +113,13 @@ body {
 }
 .chooseoption .backchoose span.active {
   opacity: 1;
+  cursor: none;
 }
 /* Start Landing Page  */
 .container {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin: auto;
 }
 .landing-page {
   height: 100vh;
@@ -131,6 +133,14 @@ body {
   background-color: #000000a8;
   z-index: 1;
 }
+.landing-page .container {
+  width: 100%;
+  padding-left: 60px;
+  padding-right: 60px;
+  /* margin: auto; */
+  position: absolute;
+  z-index: 4;
+}
 .imgs {
   background-color: #0000006e;
   position: absolute;
@@ -142,24 +152,13 @@ body {
 .imgs img {
   width: 100vw;
   height: 100%;
-  transition: 1s;
-  -webkit-transition: 1s;
-  -moz-transition: 1s;
-  -ms-transition: 1s;
-  -o-transition: 1s;
 }
 .header-area {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 20px 0px;
   z-index: 2;
-  position: absolute;
-  top: 0;
-  width: 95%;
 }
 .header-area .logo {
   font-size: 20px;
@@ -237,4 +236,76 @@ body {
 .pagenumber span.activebackpage {
   background-color: var(--main-color);
 }
+.imgs img.activebackimage {
+}
 /* End Landing Page */
+
+/* start about section */
+.about {
+  padding-top: 40px;
+  display: flex;
+  align-items: center;
+}
+.about .info-box {
+  flex: 1;
+  padding-right: 40px;
+}
+.about .info-box h1 {
+  text-transform: capitalize;
+  font-weight: bold;
+  color: var(--main-color);
+}
+.about .info-box p {
+  line-height: 1.5;
+  color: #777;
+}
+.about .info-image {
+  flex: 1;
+  text-align: center;
+}
+.about .info-image img {
+}
+/* end about section */
+
+/* start skills section */
+.skills {
+  padding-top: 40px;
+  background-color: #eee;
+}
+
+.skills .title {
+  text-align: center;
+  color: var(--main-color);
+  padding-bottom: 40px;
+}
+.skills .skills-box {
+  background-color: white;
+  padding: 5px;
+  margin-top: 35px;
+  display: flex;
+  align-items: center;
+  box-shadow: 1px 1px rgba(119, 119, 119, 0.007),
+    -1px -1px rgba(119, 119, 119, 0.027);
+}
+.skills .skills-box p {
+  width: 100px;
+  text-align: center;
+  font-weight: bold;
+}
+.skills .skills-box .progress {
+  height: 30px;
+  width: 100%;
+  background-color: #eee;
+  position: relative;
+}
+
+.skills .skills-box span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background-color: var(--main-color);
+  transition: 2s;
+}
+/* end skills section */

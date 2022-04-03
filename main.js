@@ -1,75 +1,125 @@
 // background
-let transition = 2000
+let transition = 1000
 let bakground = document.querySelectorAll('.imgs div img')
 let activepage = document.querySelectorAll('.pagenumber span')
+let parameter = document.querySelector('.parameter')
+let icon = parameter.querySelector('.spin')
+let icongear = icon.querySelector('i')
 let imgscroll
 let imgscrollleft
 let scrollpagenum
 let scrollbackpagenum
-function scrolltoright(i, j) {
-  imgscroll = window.setInterval(function () {
-    bakground[i].style = `transform:translateX(-${j}%)`
-    bakground.forEach((el) => (el.classList = ''))
+
+// end bakground landing
+let backgroundoption = localStorage.getItem('backgroundoption')
+console.log(typeof backgroundoption)
+if (backgroundoption == 'true') {
+  imgscrollone(1)
+  pagecrollone(1)
+} else {
+  parameter.querySelectorAll('.backchoose span')[0].classList.remove('active')
+  parameter.querySelectorAll('.backchoose span')[1].classList.add('active')
+}
+
+parameter.querySelectorAll('.backchoose span')[1].onclick = function () {
+  if (
+    !parameter
+      .querySelectorAll('.backchoose span')[1]
+      .classList.contains('active')
+  ) {
+    console.log('false')
+    window.clearInterval(imgscroll)
+    window.clearInterval(imgscrollleft)
+    window.clearInterval(scrollpagenum)
+    window.clearInterval(scrollbackpagenum)
+    backgroundoption = false
+    localStorage.setItem('backgroundoption', backgroundoption)
+  }
+}
+
+parameter.querySelectorAll('.backchoose span')[0].onclick = function () {
+  if (
+    !parameter
+      .querySelectorAll('.backchoose span')[0]
+      .classList.contains('active')
+  ) {
+    console.log('true')
+    backgroundoption = true
+    localStorage.setItem('backgroundoption', backgroundoption)
+
+    for (i = 0; i < bakground.length; i++) {
+      if (
+        bakground[i].classList.contains('activeimage') &&
+        activepage[i].classList.contains('activepage')
+      ) {
+        imgscrollone(i)
+        pagecrollone(i)
+      }
+
+      if (activepage[i].classList.contains('activebackpage')) {
+        pagecrolltwo(i)
+        imgscrolltwo(i + 1)
+      }
+    }
+  }
+}
+function imgscrollone(i) {
+  imgscroll = setInterval(function () {
+    bakground.forEach((e) => e.classList.remove('activeimage'))
+
     bakground[i].classList.add('activeimage')
-    bakground[i].setAttribute('data-tranlate', j)
-    j = j + 100
+    bakground[i].style = `transform:translateX(${-i * 100}%)`
     i++
     if (i == bakground.length) {
       window.clearInterval(imgscroll)
-      scrolltoleft(bakground.length - 1, -(bakg
-        round.length - 2) * 100)
+      imgscrolltwo(bakground.length - 1)
     }
-    // console.log(i);
-    return i
   }, transition)
 }
-function scrolltoleft(i, j) {
-  imgscrollleft = window.setInterval(function () {
-    bakground[i].style = `transform:translateX(${j}%)`
-    bakground.forEach((el) => (el.classList = ''))
+function imgscrolltwo(i) {
+  imgscrollleft = setInterval(function () {
+    bakground.forEach((e) => e.classList.remove('activeimage'))
     bakground[i].classList.add('activebackimage')
-    bakground[i].setAttribute('data-tranlate', j)
-
-    j = j + 100
+    bakground[i].style = `transform:translateX(${0}%)`
     i--
     if (i == 0) {
       window.clearInterval(imgscrollleft)
-      scrolltoright(1, 100)
+      imgscrollone(1)
+    }
+  }, transition)
+}
+function pagecrollone(i) {
+  scrollpagenum = setInterval(function () {
+    activepage.forEach((e) => e.classList.remove('activebackpage'))
+
+    activepage.forEach((e) => e.classList.remove('activepage'))
+    activepage[i].classList.add('activepage')
+    i++
+    if (i == activepage.length) {
+      window.clearInterval(scrollpagenum)
+      pagecrolltwo(activepage.length - 2)
     }
   }, transition)
 }
 
-function scrollpage(i) {
-  scrollpagenum = setInterval(function () {
-    activepage.forEach((el) => (el.classList = ''))
-    activepage[i].classList.add('activepage')
-    i++
-    if (i == 6) {
-      window.clearInterval(scrollpagenum)
-      scrollbackpage(activepage.length - 2)
-    }
-  }, transition)
-}
-function scrollbackpage(i) {
+function pagecrolltwo(i) {
   scrollbackpagenum = setInterval(function () {
-    activepage.forEach((el) => (el.classList = ''))
+    activepage.forEach((e) => e.classList.remove('activepage'))
+    activepage.forEach((e) => e.classList.remove('activebackpage'))
     activepage[i].classList.add('activebackpage')
     i--
     if (i == -1) {
       window.clearInterval(scrollbackpagenum)
-      scrollpage(1)
+      pagecrollone(1)
     }
   }, transition)
 }
 
-// end bakground landing
+// end landing code
 
 // Start parameter code
 
 // color parametre
-let parameter = document.querySelector('.parameter')
-let icon = parameter.querySelector('.spin')
-let icongear = icon.querySelector('i')
 
 icon.onclick = function () {
   parameter.classList.toggle('opened')
@@ -114,35 +164,26 @@ parameter.querySelector('.backchoose').addEventListener(
 
 // end parameter code
 
-scrolltoright(1, 100)
-scrollpage(1)
+//  start our skills section
 
-parameter.querySelectorAll('.backchoose span')[1].onclick = function () {
-  console.log('ok')
-  window.clearInterval(imgscroll)
-  window.clearInterval(imgscrollleft)
-  window.clearInterval(scrollpagenum)
-  window.clearInterval(scrollbackpagenum)
+let progress = document.querySelectorAll('.skills .skills-box .progress span')
+let progressafter = document.querySelectorAll('.skills .skills-box .progress')
+console.log(document.documentElement.style.getPropertyPriority('--main-color'))
+for (let i = 0; i < progressafter.length; i++) {
+  let after = document.createElement('div')
+  after.style = `padding:5px; display:flex;justify-content:center; align-items:center;background-color: ${document.documentElement.style.getPropertyValue(
+    '--main-color',
+  )};position: absolute;top: -45px;left: ${
+    progress[i].dataset.progress
+  };transform: translateX(-50%);`
+  let before = document.createElement('div')
+  before.style = `position: absolute;top:-17px;left: ${progress[i].dataset.progress};transform: translateX(-50%); border: 10px solid black;border-color: black transparent transparent;`
+  after.textContent = progress[i].dataset.progress
+  progressafter[i].appendChild(after)
+  progressafter[i].appendChild(before)
 }
 
-parameter.querySelectorAll('.backchoose span')[0].onclick = function () {
-  //scrolltoright();
-  for (i = 0; i < activepage.length; i++) {
-    if (
-      activepage[i].classList.contains('activepage') &&
-      bakground[i].classList.contains('activeimage')
-    ) {
-      scrolltoright(
-        i + 1,
-        parseInt(bakground[i].getAttribute('data-translate')) + 100,
-      )
-      scrollpage(i + 1)
-    } else if (
-      activepage[i].classList.contains('activebackpage') &&
-      bakground[i].classList.contains('activebackimage')
-    ) {
-      // scrolltoleft(i, -bakground[i].getAttribute("data-translate"));
-      scrollbackpage(i)
-    }
-  }
+window.onload = function () {
+  progress.forEach((el) => (el.style.width = el.dataset.progress))
 }
+// end our skill section
