@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .parameter {
   width: 250px;
@@ -269,7 +269,6 @@ body {
 
 /* start skills section */
 .skills {
-  padding-top: 40px;
   background-color: #eee;
 }
 
@@ -282,10 +281,15 @@ body {
   background-color: white;
   padding: 5px;
   margin-top: 35px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   box-shadow: 1px 1px rgba(119, 119, 119, 0.007),
     -1px -1px rgba(119, 119, 119, 0.027);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
 }
 .skills .skills-box p {
   width: 100px;
@@ -297,6 +301,7 @@ body {
   width: 100%;
   background-color: #eee;
   position: relative;
+  border-radius: 6px;
 }
 
 .skills .skills-box span {
