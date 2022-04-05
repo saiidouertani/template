@@ -169,15 +169,18 @@ parameter.querySelector(".backchoose").addEventListener(
 // end parameter code
 
 //  start our skills section
-console.log(window.innerHeight);
-console.log(landing.offsetHeight);
-console.log(about.offsetHeight);
+// console.log(window.innerHeight);
+// console.log(landing.offsetHeight);
+// console.log(about.offsetHeight);
 
-console.log(skills.offsetHeight);
-console.log(skills.offsetTop + skills.offsetHeight - window.innerHeight);
+// console.log(skills.offsetHeight);
+console.log(skills.offsetTop);
 window.onscroll = function () {
-  console.log(skills.offsetTop + skills.offsetHeight - window.innerHeight);
-  if (scrollY > skills.offsetTop + skills.offsetHeight - window.innerHeight) {
+  console.log(skills.offsetTop);
+  if (
+    scrollY >
+    skills.offsetTop + skills.offsetHeight - window.innerHeight - 172
+  ) {
     progressskills();
   }
 };
@@ -202,3 +205,36 @@ function progressskills() {
   progress.forEach((el) => (el.style.width = el.dataset.progress));
 }
 // end our skill section
+
+let images = document.querySelectorAll(".galerie img");
+images[0].getAttribute;
+
+images.forEach((img) =>
+  img.addEventListener("click", function (e) {
+    let popoverlay = document.createElement("div");
+    popoverlay.classList.add("popoverlay");
+    document.body.appendChild(popoverlay);
+    let popupimage = document.createElement("div");
+    image = document.createElement("img");
+    image.style = " height: 300px;width: 580px";
+    image.src = e.target.getAttribute("src");
+    popupimage.appendChild(image);
+    popupimage.classList.add("popimage");
+    document.body.appendChild(popupimage);
+    if (img.alt != null) {
+      let title = document.createElement("h1");
+      title.textContent = img.alt;
+      title.classList.add("poptitle");
+
+      popupimage.prepend(title);
+    }
+    let cancel = document.createElement("span");
+    cancel.textContent = "X";
+    cancel.classList.add("cancel");
+    popupimage.appendChild(cancel);
+    cancel.addEventListener("click", function () {
+      popupimage.remove();
+      popoverlay.remove();
+    });
+  })
+);

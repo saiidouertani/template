@@ -270,9 +270,11 @@ body {
 /* start skills section */
 .skills {
   background-color: #eee;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
-.skills .title {
+.title {
   text-align: center;
   color: var(--main-color);
   padding-bottom: 40px;
@@ -314,3 +316,67 @@ body {
   transition: 2s;
 }
 /* end skills section */
+
+/* start Galerie */
+.galerie {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.galerie .images-box {
+  text-align: center;
+}
+/* end Gaklerie */
+.galerie .images-box img {
+  width: 200px;
+  height: 150px;
+  padding: 3px;
+  background-color: #cccccca1;
+  border: 1px solid #f6f6f6;
+  cursor: pointer;
+}
+
+.popoverlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: ;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+}
+.popimage {
+  position: fixed;
+
+  padding: 10px;
+  background-color: #77777757;
+  z-index: 2000;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+.poptitle {
+  text-align: center;
+  color: var(--main-color);
+}
+.cancel {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background-color: var(--main-color);
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  color: white;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
