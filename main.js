@@ -225,7 +225,6 @@ images.forEach((img) =>
       let title = document.createElement("h1");
       title.textContent = img.alt;
       title.classList.add("poptitle");
-
       popupimage.prepend(title);
     }
     let cancel = document.createElement("span");
@@ -235,6 +234,12 @@ images.forEach((img) =>
     cancel.addEventListener("click", function () {
       popupimage.remove();
       popoverlay.remove();
+    });
+    window.addEventListener("keyup", function (event) {
+      if (event.key === "Escape") {
+        popupimage.remove();
+        popoverlay.remove();
+      }
     });
   })
 );

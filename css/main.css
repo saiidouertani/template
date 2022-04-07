@@ -339,14 +339,13 @@ body {
   position: fixed;
   height: 100%;
   width: 100%;
-  background-color: ;
+  background-color: rgba(0, 0, 0, 0.685);
   z-index: 2000;
   top: 0;
   left: 0;
 }
 .popimage {
   position: fixed;
-
   padding: 10px;
   background-color: #77777757;
   z-index: 2000;
@@ -358,6 +357,7 @@ body {
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
+  box-shadow: 2px 2px 2px rgb(153, 145, 145), -2px -2px 2px rgb(154, 145, 145);
 }
 
 .poptitle {
@@ -379,4 +379,169 @@ body {
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+  cursor: pointer;
 }
+
+/* start timeline section */
+.timeline {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #eee;
+  margin-top: 60px;
+  border: 1px solid transparent;
+}
+.timeline .timelinecontainer {
+  background-color: #eee;
+  overflow: hidden;
+  position: relative;
+}
+.timeline .year {
+  margin: 0px auto 20px;
+  width: fit-content;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  background-color: var(--main-color);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.timeline .timelinecontainer::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  background-color: var(--main-color);
+  left: 50%;
+  /* z-index: 2; */
+  /* bottom: -229px; */
+  top: 0;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+
+.timeline .timelinecontainer .timeleft,
+.timeline .timelinecontainer .timeright {
+  margin-top: 20px;
+  padding: 20px;
+  width: calc(50% - 25px);
+  background-color: white;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  position: relative;
+}
+.timeline .timelinecontainer .timeleft {
+  float: left;
+}
+.timeline .timelinecontainer .timeleft::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--main-color);
+  right: -36px;
+  top: 20px;
+  border-radius: 19px;
+  z-index: 2;
+  background-color: white;
+}
+.timeline .timelinecontainer .timeleft::before {
+  content: "";
+  position: absolute;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent transparent white;
+  right: -20px;
+  top: 20px;
+}
+.timeline .timelinecontainer .timeright {
+  float: right;
+}
+.timeline .timelinecontainer .timeright::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--main-color);
+  left: -36px;
+  top: 20px;
+  border-radius: 19px;
+  z-index: 2;
+  background-color: white;
+}
+.timeline .timelinecontainer .timeright::before {
+  content: "";
+  position: absolute;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+  left: -20px;
+  top: 20px;
+}
+.timeline .timelinecontainer h1 {
+  color: var(--main-color);
+  font-size: 24px;
+}
+
+.timeline .timelinecontainer p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.clear {
+  clear: both;
+}
+/* end timeline section */
+
+/* start features section */
+.features {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.feat-box {
+  margin: 10px auto;
+}
+
+.box {
+  float: left;
+  width: calc(100% / 3);
+  text-align: center;
+}
+.box img {
+  width: 60px;
+}
+.box h2 {
+  position: relative;
+}
+.box h2::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  background-color: var(--main-color);
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  height: 3px;
+  bottom: -20px;
+}
+.box p {
+  color: #777;
+  line-height: 1.6;
+  margin-top: 35px;
+  font-size: 14px;
+  width: 80%;
+  margin: 40px auto;
+}
+/* end features section */
