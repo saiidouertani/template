@@ -561,6 +561,10 @@ body {
     black 50%
   );
 }
+.testimonials .title {
+  color: white;
+  text-align: left;
+}
 .testimonials .testmonials-box {
   overflow: hidden;
 }
@@ -572,6 +576,12 @@ body {
   width: calc(98% / 3);
   padding: 10px;
   background-color: white;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  box-shadow: 2px 2px 2px #eee, -2px -2px 2px #eee;
 }
 .testimonials .testmonials-box .box-test img {
   border-radius: 50%;
@@ -587,10 +597,11 @@ body {
   color: #777;
   padding: 10px;
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 12px;
   font-style: italic;
+  margin: 0;
 }
 .testimonials .testmonials-box .box-test h3 {
-  margin: 5px 0px;
+  margin: 26px 0px 0px;
 }
 /* End testmonials section */
