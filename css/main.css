@@ -16,6 +16,7 @@ body {
   top: 0;
   left: 0;
   background-color: white;
+  border: 1px solid #eee;
   z-index: 4;
   transform: translateX(-250px);
   transition: 0.5s;
@@ -48,7 +49,8 @@ body {
   -ms-transform: translateX(0px);
   -o-transform: translateX(0px);
 }
-.parameter .chooseoption {
+.parameter .chooseoption,
+.parameter .chooseoptionbullet {
   background-color: #eee;
   padding: 10px;
   margin-top: 10px;
@@ -99,11 +101,13 @@ body {
 .parameter ul li:nth-child(5) {
   background-color: #edf105;
 }
-.chooseoption .backchoose {
+.chooseoption .backchoose,
+.chooseoptionbullet .backchoose {
   width: fit-content;
   margin: 10px auto;
 }
-.chooseoption .backchoose span {
+.chooseoption .backchoose span,
+.chooseoptionbullet .backchoose span {
   padding: 5px 20px;
   background-color: #03a9f4;
   color: white;
@@ -112,10 +116,68 @@ body {
   opacity: 0.2;
   cursor: pointer;
 }
-.chooseoption .backchoose span.active {
+.chooseoption .backchoose span.active,
+.chooseoptionbullet .backchoose span.active {
   opacity: 1;
   cursor: none;
 }
+.reset {
+  background-color: #f44336;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* start bullet section */
+.bullet {
+  position: fixed;
+  width: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  z-index: 100;
+}
+.bullet .bullet-box {
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--main-color);
+  border-radius: 50%;
+  margin: 10px auto;
+  position: relative;
+}
+.bullet .bullet-box .option {
+  position: absolute;
+  background-color: var(--main-color);
+  color: white;
+  padding: 1px 2px;
+  width: 90px;
+  right: 50px;
+  cursor: default;
+  pointer-events: none;
+  transition: 1s;
+  text-transform: capitalize;
+  text-align: center;
+  display: none;
+}
+.bullet .bullet-box:hover .option {
+  display: block;
+}
+
+.bullet .bullet-box .option::after {
+  content: "";
+  border: 10px solid var(--main-color);
+  border-color: transparent transparent transparent var(--main-color);
+  right: -20px;
+  top: 50%;
+  margin-bottom: 5px;
+  position: absolute;
+  z-index: 100;
+  transform: translateY(-50%);
+}
+
+/* end bullet section */
 /* Start Landing Page  */
 .container {
   padding-left: 60px;
@@ -592,6 +654,7 @@ body {
   width: 100px;
   height: 100px;
   float: left;
+  padding: 10px;
 }
 .testimonials .testmonials-box .box-test p {
   color: #777;
