@@ -50,7 +50,6 @@ parameter.querySelectorAll('.backchoose span')[0].onclick = function () {
       .querySelectorAll('.backchoose span')[0]
       .classList.contains('active')
   ) {
-    console.log('true')
     backgroundoption = true
     localStorage.setItem('backgroundoption', backgroundoption)
 
@@ -70,6 +69,7 @@ parameter.querySelectorAll('.backchoose span')[0].onclick = function () {
     }
   }
 }
+scrollinto('.links a')
 function imgscrollone(i) {
   imgscroll = setInterval(function () {
     bakground.forEach((e) => e.classList.remove('activeimage'))
@@ -136,7 +136,9 @@ let colors = parameter.querySelectorAll('ul li')
 
 colors.forEach(function (el) {
   el.onclick = function () {
-    colors.forEach((el) => el.classList.remove('active'))
+    el.parentElement
+      .querySelectorAll('.active')
+      .forEach((el) => el.classList.remove('active'))
     el.classList.add('active')
     document.documentElement.style.setProperty(
       '--main-color',
@@ -151,8 +153,66 @@ if (localStorage.getItem('color') != null) {
     '--main-color',
     `${window.localStorage.getItem('color')}`,
   )
+  colors.forEach(function (el) {
+    if (window.localStorage.getItem('color') == el.dataset.color) {
+      el.parentElement
+        .querySelectorAll('.active')
+        .forEach((el) => el.classList.remove('active'))
+      el.classList.add('active')
+    }
+  })
 }
 // end color parametre
+// start bullets section
+function scrollinto(elm) {
+  const bullets = document.querySelectorAll(elm)
+
+  bullets.forEach((bullet) =>
+    bullet.addEventListener('click', function (e) {
+      e.preventDefault()
+
+      document
+        .querySelector(e.target.dataset.section)
+        .scrollIntoView({ behavior: 'smooth' })
+    }),
+  )
+}
+scrollinto('.bullet .bullet-box')
+document
+  .querySelector('.chooseoptionbullet .backchoose')
+  .addEventListener('click', function (ev) {
+    ev.target.parentElement.querySelectorAll('span').forEach(function (span) {
+      span.classList.remove('active')
+    })
+    ev.target.classList.add('active')
+    if (ev.target.textContent == 'Yes') {
+      localStorage.setItem('bulletoption', 'true')
+      document.querySelector('.bullet').style.display = 'block'
+    } else {
+      localStorage.setItem('bulletoption', 'false')
+      document.querySelector('.bullet').style.display = 'none'
+    }
+  })
+
+if (localStorage.getItem('bulletoption') == 'false') {
+  document.querySelector('.bullet').style.display = 'none'
+  parameter
+    .querySelectorAll('.chooseoptionbullet .backchoose span')[0]
+    .classList.remove('active')
+  parameter
+    .querySelectorAll('.chooseoptionbullet .backchoose span')[1]
+    .classList.add('active')
+} else {
+  document.querySelector('.bullet').style.display = 'block'
+  parameter
+    .querySelectorAll('.chooseoptionbullet .backchoose span')[0]
+    .classList.add('active')
+  parameter
+    .querySelectorAll('.chooseoptionbullet .backchoose span')[1]
+    .classList.remove('active')
+}
+
+// end bullets section
 
 // start background parameter
 parameter.querySelector('.backchoose').addEventListener(
@@ -180,10 +240,7 @@ parameter.querySelector('.backchoose').addEventListener(
 console.log(skills.offsetTop)
 window.onscroll = function () {
   console.log(skills.offsetTop)
-  if (
-    scrollY > skills.offsetTop + skills.offsetHeight - window.innerHeight &&
-    scrollY < skills.offsetTop + skills.offsetHeight - window.innerHeight + 15
-  ) {
+  if (scrollY > skills.offsetTop + skills.offsetHeight - window.innerHeight) {
     progressskills()
   }
 }
@@ -208,3 +265,41 @@ function progressskills() {
   progress.forEach((el) => (el.style.width = el.dataset.progress))
 }
 // end our skill section
+
+let images = document.querySelectorAll('.galerie img')
+images[0].getAttribute
+
+images.forEach((img) =>
+  img.addEventListener('click', function (e) {
+    let popoverlay = document.createElement('div')
+    popoverlay.classList.add('popoverlay')
+    document.body.appendChild(popoverlay)
+    let popupimage = document.createElement('div')
+    image = document.createElement('img')
+    image.style = ' height: 300px;width: 580px'
+    image.src = e.target.getAttribute('src')
+    popupimage.appendChild(image)
+    popupimage.classList.add('popimage')
+    document.body.appendChild(popupimage)
+    if (img.alt != null) {
+      let title = document.createElement('h1')
+      title.textContent = img.alt
+      title.classList.add('poptitle')
+      popupimage.prepend(title)
+    }
+    let cancel = document.createElement('span')
+    cancel.textContent = 'X'
+    cancel.classList.add('cancel')
+    popupimage.appendChild(cancel)
+    cancel.addEventListener('click', function () {
+      popupimage.remove()
+      popoverlay.remove()
+    })
+    window.addEventListener('keyup', function (event) {
+      if (event.key === 'Escape') {
+        popupimage.remove()
+        popoverlay.remove()
+      }
+    })
+  }),
+)
