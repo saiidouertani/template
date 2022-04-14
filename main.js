@@ -25,7 +25,8 @@ if (backgroundoption == "false") {
 } else {
   parameter.querySelectorAll(".backchoose span")[0].classList.add("active");
   parameter.querySelectorAll(".backchoose span")[1].classList.remove("active");
-  imgscrollone(1);
+  // imgscrollone(1);
+  randombackground();
   pagecrollone(1);
 }
 
@@ -54,23 +55,40 @@ parameter.querySelectorAll(".backchoose span")[0].onclick = function () {
     backgroundoption = true;
     localStorage.setItem("backgroundoption", backgroundoption);
 
-    for (i = 0; i < bakground.length; i++) {
+    for (i = 0; i < progress.length; i++) {
       if (
-        bakground[i].classList.contains("activeimage") &&
+        // bakground[i].classList.contains("activeimage") &&
         activepage[i].classList.contains("activepage")
       ) {
-        imgscrollone(i);
+        // imgscrollone(i);
+        randombackground();
         pagecrollone(i);
       }
 
       if (activepage[i].classList.contains("activebackpage")) {
         pagecrolltwo(i);
-        imgscrolltwo(i + 1);
+        // imgscrolltwo(i + 1);
+        randombackground();
       }
     }
   }
 };
 scrollinto(".links a");
+function randombackground() {
+  let imgs = [
+    "../imgs/laptop-3.webp",
+    "../imgs/laptop.webp",
+    "../imgs/04 (1).jpg",
+    "../imgs/web-design.jpg",
+    "../imgs/01.jpg",
+  ];
+  imgscroll = setInterval(function () {
+    console.log(imgs[Math.floor(Math.random() * imgs.length)]);
+    landing.style = `background-image:url(${
+      imgs[Math.floor(Math.random() * imgs.length)]
+    })`;
+  }, transition);
+}
 function imgscrollone(i) {
   imgscroll = setInterval(function () {
     bakground.forEach((e) => e.classList.remove("activeimage"));
