@@ -1,5 +1,5 @@
 // background
-let transition = 10000;
+let transition = 1000;
 let bakground = document.querySelectorAll(".imgs div img");
 let landing = document.querySelector(".landing-page");
 let about = document.querySelector(".about");
@@ -25,8 +25,8 @@ if (backgroundoption == "false") {
 } else {
   parameter.querySelectorAll(".backchoose span")[0].classList.add("active");
   parameter.querySelectorAll(".backchoose span")[1].classList.remove("active");
-  // imgscrollone(1);
-  randombackground();
+  imgscrollone(1);
+  // randombackground();
   pagecrollone(1);
 }
 
@@ -55,20 +55,20 @@ parameter.querySelectorAll(".backchoose span")[0].onclick = function () {
     backgroundoption = true;
     localStorage.setItem("backgroundoption", backgroundoption);
 
-    for (i = 0; i < progress.length; i++) {
+    for (i = 0; i < bakground.length; i++) {
       if (
-        // bakground[i].classList.contains("activeimage") &&
+        bakground[i].classList.contains("activeimage") &&
         activepage[i].classList.contains("activepage")
       ) {
-        // imgscrollone(i);
-        randombackground();
+        imgscrollone(i);
+        // randombackground();
         pagecrollone(i);
       }
 
       if (activepage[i].classList.contains("activebackpage")) {
         pagecrolltwo(i);
-        // imgscrolltwo(i + 1);
-        randombackground();
+        imgscrolltwo(i + 1);
+        // randombackground();
       }
     }
   }

@@ -6,7 +6,6 @@
 }
 body {
   font-family: "Open Sans", sans-serif;
-  position: absolute;
 }
 .parameter {
   width: 250px;
@@ -180,17 +179,37 @@ body {
 /* end bullet section */
 /* Start Landing Page  */
 .container {
-  padding-left: 60px;
-  padding-right: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
   margin: auto;
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
 }
 .landing-page {
   height: 100vh;
   position: relative;
   color: white;
-  background-image: url("../imgs/table.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  /* background-image: url("../imgs/table.jpg"); */
+  /* background-size: cover;
+  background-repeat: no-repeat; */
 }
 .landing-page .overlay {
   position: absolute;
@@ -200,11 +219,7 @@ body {
   z-index: 1;
 }
 .landing-page .container {
-  width: 100%;
-  padding-left: 60px;
-  padding-right: 60px;
-  /* margin: auto; */
-  position: absolute;
+  position: relative;
   z-index: 4;
 }
 .imgs {
@@ -216,10 +231,10 @@ body {
   overflow: hidden;
 }
 .imgs div {
-  width: 100vw;
 }
 .imgs img {
   height: 100%;
+  width: 100vw;
 }
 @media (max-width: 576px) {
   .imgs img {
@@ -245,6 +260,27 @@ body {
   margin: 0;
   padding: 0;
 }
+.header-area i {
+  display: none;
+  width: 50px;
+}
+@media (max-width: 768px) {
+  .header-area .links-container .links {
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    left: 0;
+  }
+  .header-area .links-container .links li {
+    color: blue;
+    display: block;
+  }
+  .header-area i {
+    display: block;
+    width: 50px;
+  }
+}
+
 .header-area .links-container .links li {
   display: inline-block;
   margin-left: 10px;
@@ -338,6 +374,7 @@ body {
   text-align: center;
 }
 .about .info-image img {
+  max-width: 100%;
 }
 /* end about section */
 
@@ -687,9 +724,15 @@ body {
   display: grid;
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: 1fr 1fr;
+  display: block;
   gap: 10px;
-  width: 900px;
   margin: auto;
+  max-width: 100%;
+}
+@media (max-width: 576px) {
+  .contact form {
+    display: block;
+  }
 }
 .contact form input {
   height: 60px;
@@ -731,7 +774,6 @@ body {
   opacity: 0.1;
 }
 /* end contact section */
-
 
 /* start grid system */
 
