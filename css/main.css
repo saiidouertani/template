@@ -16,7 +16,7 @@ body {
   left: 0;
   background-color: white;
   border: 1px solid #eee;
-  z-index: 4;
+  z-index: 1000;
   transform: translateX(-250px);
   transition: 0.5s;
   -webkit-transition: 0.5s;
@@ -248,6 +248,7 @@ body {
   align-items: center;
   padding: 20px 0px;
   z-index: 2;
+  position: relative;
 }
 .header-area .logo {
   font-size: 20px;
@@ -263,22 +264,6 @@ body {
 .header-area i {
   display: none;
   width: 50px;
-}
-@media (max-width: 768px) {
-  .header-area .links-container .links {
-    position: absolute;
-    bottom: 0;
-    background-color: white;
-    left: 0;
-  }
-  .header-area .links-container .links li {
-    color: blue;
-    display: block;
-  }
-  .header-area i {
-    display: block;
-    width: 50px;
-  }
 }
 
 .header-area .links-container .links li {
@@ -348,6 +333,50 @@ body {
 }
 .imgs img.activebackimage {
 }
+
+@media (max-width: 768px) {
+  .header-area .links-container .links {
+    position: absolute;
+    bottom: 167px;
+    background-color: white;
+    left: 0;
+    width: 100%;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+  }
+  .header-area .links-container .links::after {
+    content: "";
+    position: absolute;
+    top: -22px;
+    right: 0;
+    transition: 1s;
+    border: 11px solid white;
+    border-color: transparent transparent white;
+    z-index: -5;
+  }
+  .header-area .links-container .links.display {
+    bottom: -167px;
+  }
+  .header-area .links-container .links li {
+    color: blue;
+    display: block;
+    color: white;
+    padding: 5px 0px;
+    border-bottom: 1px solid #ccc;
+  }
+  .header-area .links-container .links li a {
+    color: black;
+  }
+  .header-area i {
+    display: block;
+    width: 50px;
+    text-align: right;
+    margin-right: 3px;
+  }
+}
 /* End Landing Page */
 
 /* start about section */
@@ -375,6 +404,22 @@ body {
 }
 .about .info-image img {
   max-width: 100%;
+}
+@media (max-width: 768px) {
+  .about .info-image img {
+    display: none;
+  }
+  .about .info-box {
+    margin: auto;
+    text-align: center;
+    width: 200px;
+    padding: 0;
+  }
+  .about {
+    padding: 40px 0px;
+    display: block;
+    align-items: center;
+  }
 }
 /* end about section */
 
@@ -426,6 +471,18 @@ body {
   background-color: var(--main-color);
   transition: 2s;
 }
+@media (max-width: 576px) {
+  .skills .skills-box {
+    display: block;
+  }
+
+  .skills .skills-box p {
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+  }
+}
+
 /* end skills section */
 
 /* start Galerie */
@@ -538,7 +595,7 @@ body {
 
 .timeline .timelinecontainer .timeleft,
 .timeline .timelinecontainer .timeright {
-  margin-top: 20px;
+  margin: 20px auto;
   padding: 20px;
   width: calc(50% - 25px);
   background-color: white;
@@ -610,6 +667,60 @@ body {
 .clear {
   clear: both;
 }
+@media (max-width: 768px) {
+  .timeline .timelinecontainer .timeleft,
+  .timeline .timelinecontainer .timeright {
+    margin-top: 60px;
+    padding: 20px;
+    width: calc(100% - 25px);
+    background-color: white;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    position: relative;
+    float: none;
+    z-index: 5;
+  }
+  .timeline .timelinecontainer .timeleft::after,
+  .timeline .timelinecontainer .timeright::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--main-color);
+    left: 50%;
+    transform: translateX(-50%);
+    top: -40px;
+    border-radius: 19px;
+    z-index: 2;
+    background-color: white;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+  }
+  .timeline .timelinecontainer .timeleft::before,
+  .timeline .timelinecontainer .timeright::before {
+    content: "";
+    position: absolute;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    top: -20px;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+  }
+  .timeline .timelinecontainer:nth-child(2) {
+    margin: 0px auto;
+  }
+}
 /* end timeline section */
 
 /* start features section */
@@ -627,6 +738,21 @@ body {
   float: left;
   width: calc(100% / 3);
   text-align: center;
+}
+@media (max-width: 768px) {
+  .box {
+    float: none;
+    width: calc(100% - 20px);
+    text-align: center;
+    margin: 10px auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .box {
+    float: left;
+    width: calc(100% / 2);
+    text-align: center;
+  }
 }
 .box img {
   width: 60px;
@@ -691,6 +817,20 @@ body {
   -o-border-radius: 10px;
   box-shadow: 2px 2px 2px #eee, -2px -2px 2px #eee;
 }
+@media (max-width: 768px) {
+  .testimonials .testmonials-box .box-test {
+    width: calc(100% - 20px);
+    float: none;
+    margin: 10px auto;
+    display: flex;
+    flex-wrap: wrap-reverse;
+  }
+  .testimonials .testmonials-box .box-test p:last-child {
+    position: relative;
+    left: -134px;
+    top: 46px;
+  }
+}
 .testimonials .testmonials-box .box-test img {
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -728,9 +868,34 @@ body {
   margin: auto;
   max-width: 100%;
 }
+/* start contact section */
+.contact {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+.contact form {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: auto;
+  max-width: 100%;
+}
 @media (max-width: 576px) {
   .contact form {
     display: block;
+    text-align: center;
+  }
+  .contact form input {
+    margin-top: 10px;
+  }
+  .contact form textarea {
+    height: 150px;
+    margin-top: 10px;
+  }
+  .contact form input[type="submit"] {
+    display: block;
+    margin: 10px auto;
   }
 }
 .contact form input {
@@ -772,8 +937,3 @@ body {
 .contact form textarea:focus::placeholder {
   opacity: 0.1;
 }
-/* end contact section */
-
-/* start grid system */
-
-/* end grid system */

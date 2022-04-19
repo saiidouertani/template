@@ -73,7 +73,21 @@ parameter.querySelectorAll(".backchoose span")[0].onclick = function () {
     }
   }
 };
-scrollinto(".links a");
+scrollinto(".links li ");
+// document.querySelectorAll('.links li').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     console.log(e.target.parentElement.parentElement)
+//     e.target.parentElement.parentElement
+//       .querySelectorAll('li a')
+//       .forEach((el) => el.classList.remove('active'))
+//     e.target.classList.add('active')
+//   })
+// })
+document.querySelector(".header-area i").onclick = function () {
+  document
+    .querySelector(".header-area .links-container .links")
+    .classList.toggle("display");
+};
 function randombackground() {
   let imgs = [
     "../imgs/laptop-3.webp",
@@ -141,6 +155,15 @@ function pagecrolltwo(i) {
   }, transition);
 }
 
+document.addEventListener("click", function (e) {
+  let links = document.querySelector(".header-area .links-container .links");
+  let menubotton = document.querySelector(".header-area i");
+  if (e.target !== links && e.target !== menubotton) {
+    if (links.classList.contains("display")) {
+      links.classList.remove("display");
+    }
+  }
+});
 // end landing code
 
 // Start parameter code
