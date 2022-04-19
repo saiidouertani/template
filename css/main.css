@@ -724,7 +724,6 @@ body {
   display: grid;
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: 1fr 1fr;
-  display: block;
   gap: 10px;
   margin: auto;
   max-width: 100%;
